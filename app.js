@@ -23,14 +23,6 @@ circTool.addEventListener("click", () => {
 });
 //when clicked, it will change the tool used
 
-const colorSelect = document.getElementById("colorSelect");
-//connect color selector to js file
-
-colorSelect.addEventListener("change", (event) => {
-    const selectedColor = event.target.value;
-    ctx.strokeStyle = selectedColor;
-}); //use the color selector to change drawing color
-
 
 //task 3: implement shape drawing logic
 
@@ -93,3 +85,19 @@ function drawCircle(x1,y1,x2,y2) {
     ctx.stroke();
 };
 //logic to draw the circle
+
+
+//task 4: add color selection and canvas clearing
+
+const colorSelect = document.getElementById("colorSelect");
+//connect color selector to js file
+
+colorSelect.addEventListener("change", (event) => {
+    const selectedColor = event.target.value;
+    ctx.strokeStyle = selectedColor;
+}); //use the color selector to change drawing color
+
+const clearCanvas = document.getElementById("click", () => {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+});
+//clears all work on the canvas
