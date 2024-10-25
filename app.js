@@ -18,3 +18,14 @@ rectTool.addEventListener("click", () => {
     selectedTool = rectTool;
 }); 
 //when clicked, it will change the tool used.
+
+const colorSelect = document.getElementById("colorSelect");
+//connect color selector to js file
+
+colorSelect.addEventListener("change", (event) => {
+    const selectedColor = event.target.value;
+    colorSelect.textContent = `${selectedColor}`;
+});
+
+
+//task 3: implement shape drawing logic
