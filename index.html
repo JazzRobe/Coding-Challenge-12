@@ -6,18 +6,22 @@
     <title>Canvas Drawing</title>
 </head>
 <body>
-    <canvas id="myCanvas" width="500" height="400"></canvas>
+    <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas> <br>
+    <!--initialize the canvas-->
 
     <button id="lineTool">Line Tool</button>
     <button id="rectTool">Rectangle Tool</button>
+    <!--two buttons to change the drawing tool-->
 
     <select id="colorSelect">
         <option value="Red">Red</option>
         <option value="Yellow">Yellow</option>
         <option value="Blue">Blue</option>
     </select>
+    <!--dropdown to select one of three drawing colors-->
 
     <button id="clearCanvas">Clear</button>
+    <!--button to clear the canvas-->
 
     <script src="canvas.js"></script>
 </body>
