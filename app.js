@@ -9,8 +9,9 @@ const rectTool = document.getElementById("rectTool");
 const circTool = document.getElementById("circTool");
 //connects drawing tools to js file
 
-let selectedTool = lineTool; 
-//default tool
+let selectedTool = lineTool;
+let selectedColor = "black" 
+//default tool and color
 
 lineTool.addEventListener("click", () => {
     selectedTool = lineTool;
@@ -40,8 +41,9 @@ canvas.addEventListener("mousedown", (event) => {
 canvas.addEventListener("mousemove", (event) => {
     const currentX = event.offsetX;
     const currentY = event.offsetY;
+    ctx.strokeStyle = selectedColor;
 
-    if(isDrawing = true && selectedTool === lineTool) {
+    if(isDrawing === true && selectedTool === lineTool) {
         drawLine(startX, startY, currentX, currentY);
         startX = currentX;
         startY = currentY
@@ -49,11 +51,9 @@ canvas.addEventListener("mousemove", (event) => {
         drawRectangle(startX, startY, currentX - startX, currentY - startY);
     } else if(isDrawing === true && selectedTool === circTool) {
         drawCircle(startX, startY, currentX, currentY);
-    } else {
-        return;
     }
 });
-//draw as you move the mouse
+//draw as you move the mouse, depending on selected tool
 
 canvas.addEventListener("mouseup", () => {
     isDrawing = false;
@@ -64,7 +64,6 @@ function drawLine(x1, y1, x2, y2) {
     ctx.beginPath()
     ctx.moveTo(x1,y1);
     ctx.lineTo(x2,y2);
-    ctx.strokeStyle = selectedColor;
     ctx.stroke();
 };
 //logic to draw the line
@@ -72,17 +71,17 @@ function drawLine(x1, y1, x2, y2) {
 function drawRectangle(x,y,width,height) {
     ctx.beginPath();
     ctx.rect(x,y,width,height);
-    ctx.strokeStyle = selectedColor;
-    ctx.stroke();
+    ctx.fillStyle = selectedColor;
+    ctx.fill();
 };
 //logic to draw the rectangle
 
 function drawCircle(x1,y1,x2,y2) {
-    const radius = Math.sqrt(MTH>PeriodicWave(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    const radius = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     ctx.beginPath()
     ctx.arc(x1,y1,radius,0,2*Math.PI);
-    ctx.strokeStyle = selectedColor;
-    ctx.stroke();
+    ctx.fillStyle = selectedColor;
+    ctx.fill();
 };
 //logic to draw the circle
 
@@ -93,11 +92,12 @@ const colorSelect = document.getElementById("colorSelect");
 //connect color selector to js file
 
 colorSelect.addEventListener("change", (event) => {
-    const selectedColor = event.target.value;
-    ctx.strokeStyle = selectedColor;
-}); //use the color selector to change drawing color
+    selectedColor = event.target.value;
+}); 
+//use the color selector to change drawing color
 
-const clearCanvas = document.getElementById("click", () => {
+const clearCanvas = document.getElementById("clearCanvas");
+clearCanvas.addEventListener("click", () => {
     ctx.clearRect(0,0,canvas.width,canvas.height);
 });
 //clears all work on the canvas
